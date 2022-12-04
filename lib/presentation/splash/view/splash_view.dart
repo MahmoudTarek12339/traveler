@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 
 import 'package:traveler/presentation/home/view/main_view.dart';
+import 'package:traveler/presentation/resources/constants_manager.dart';
+import 'package:traveler/presentation/resources/strings_manager.dart';
+import 'package:traveler/presentation/resources/values_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -37,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
               duration: Duration(milliseconds: _navigate ? 900 : 2500),
               curve: _navigate ? Curves.fastLinearToSlowEaseIn : Curves.elasticOut,
               height: _navigate ? 0 : _ballDropped ? h / 2 : 20,
-              width: 20,
+              width: AppSize.s20
             ),
             AnimatedContainer(
               duration: Duration(seconds: _navigate? 1 : _containerAnimation ? 2 : 0),
@@ -50,59 +53,52 @@ class _SplashScreenState extends State<SplashScreen> {
                       : _containerVisibility
                           ? Colors.black
                           : Colors.transparent,
-                  borderRadius: _navigate ? null : BorderRadius.circular(30)),
+                  borderRadius: _navigate ? null : BorderRadius.circular(AppSize.s30)),
               child: Center(
                 child: _textAnimation
-                    ? AnimatedTextKit(
-                        totalRepeatCount: 1,
-                        animatedTexts: [
-                          FadeAnimatedText(
-                            'Traveler',
+                    ? AnimatedTextKit(totalRepeatCount: 1, animatedTexts: [
+                        FadeAnimatedText(AppStrings.traveler,
                             duration: const Duration(milliseconds: 1700),
                             textStyle: const TextStyle(
                                 fontSize: 30,
                                 fontWeight: FontWeight.w700,
-                                color: Colors.white),
-                          ),
-                        ],
-                      )
+                                color: Colors.white))
+                      ])
                     : const SizedBox(),
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          ])));
   }
 
   _initTimers() {
     //timer till ball dropped and change container visibility
-    Timer(const Duration(milliseconds: 400), () {
+    Timer(const Duration(milliseconds: AppConstants.droppedBallAnimation), () {
       setState(() {
         _ballDropped = true;
         _containerVisibility = true;
       });
     });
     //timer for container expand animation
-    Timer(const Duration(milliseconds: 1300), () {
+    Timer(const Duration(milliseconds: AppConstants.expandContainerAnimation),
+        () {
       setState(() {
         _containerAnimation = true;
       });
     });
     //timer for text animation
-    Timer(const Duration(milliseconds: 1700), () {
+    Timer(const Duration(milliseconds: AppConstants.textAnimation), () {
       setState(() {
         _textAnimation = true;
       });
     });
     //timer for fade transition
-    Timer(const Duration(milliseconds: 3400), () {
+    Timer(const Duration(milliseconds: AppConstants.navigateAnimation), () {
       setState(() {
         _navigate = true;
       });
     });
     //timer to navigate to main page
-    Timer(const Duration(milliseconds: 3850), () {
+    Timer(const Duration(milliseconds: AppConstants.changeScreenAnimation), () {
       openHomePage();
     });
   }

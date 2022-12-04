@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:traveler/data/local_data/local_data.dart';
 import 'package:traveler/model/models.dart';
 import 'package:traveler/presentation/countryDetails/view/country_details.dart';
+import 'package:traveler/presentation/resources/constants_manager.dart';
+import 'package:traveler/presentation/resources/values_manager.dart';
 
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
@@ -105,19 +107,19 @@ class _MainViewState extends State<MainView> {
     final size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p4),
       child: Stack(
         alignment: Alignment.center,
         children: [
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: AppConstants.widgetMovementAnimation),
             bottom: isExpanded ? 65 : 100,
             width: size.width * 0.7,
             height: isExpanded ? size.height * 0.65 : size.height * 0.6,
             child: _expandedContentWidget(context, country),
           ),
           AnimatedPositioned(
-            duration: const Duration(milliseconds: 500),
+            duration: const Duration(milliseconds: AppConstants.widgetMovementAnimation),
             bottom: isExpanded ? 150 : 100,
             child: GestureDetector(
               onPanUpdate: onPanUpdate,
@@ -135,9 +137,9 @@ class _MainViewState extends State<MainView> {
     return Container(
         decoration: BoxDecoration(
           color: Colors.white.withOpacity(0.85),
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          borderRadius: const BorderRadius.all(Radius.circular(AppSize.s15)),
         ),
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(AppPadding.p15),
         child: Align(
             alignment: Alignment.bottomCenter,
             child: Text(country.description,
@@ -153,14 +155,14 @@ class _MainViewState extends State<MainView> {
     final size = MediaQuery.of(context).size;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 2),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p2),
       height: size.height * 0.6,
       width: size.width * 0.73,
       decoration: const BoxDecoration(
         boxShadow: [
           BoxShadow(color: Colors.black26, blurRadius: 2, spreadRadius: 1),
         ],
-        borderRadius: BorderRadius.all(Radius.circular(20)),
+        borderRadius: BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
       child: Stack(
         alignment: Alignment.topCenter,
@@ -176,7 +178,7 @@ class _MainViewState extends State<MainView> {
   Widget _buildImage(Country country) {
     return SizedBox.expand(
       child: ClipRRect(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
         child: Image.asset(country.image, fit: BoxFit.cover),
       ),
     );
@@ -185,7 +187,7 @@ class _MainViewState extends State<MainView> {
   //image name on top of image
   Widget _countryNameWidget(country) {
     return Padding(
-      padding: const EdgeInsets.all(8),
+      padding: const EdgeInsets.all(AppPadding.p8),
       child: Text(
         country.name,
         style: const TextStyle(
@@ -201,7 +203,7 @@ class _MainViewState extends State<MainView> {
   void onPageChanged(index, _) {
     _controller.animateToPage(
       index,
-      duration: const Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: AppConstants.pageChangeAnimation),
       curve: Curves.easeIn,
     );
   }
@@ -217,8 +219,10 @@ class _MainViewState extends State<MainView> {
   void opedDetailsPage(Country country) {
     Navigator.of(context).push(
       PageRouteBuilder(
-        transitionDuration: const Duration(seconds: 1),
-        reverseTransitionDuration: const Duration(milliseconds: 200),
+        transitionDuration:
+            const Duration(seconds: AppConstants.pageTransition),
+        reverseTransitionDuration:
+            const Duration(milliseconds: AppConstants.pageReverseTransition),
         pageBuilder: (context, animation, secondaryAnimation) {
           final curvedAnimation = CurvedAnimation(
             parent: animation,
