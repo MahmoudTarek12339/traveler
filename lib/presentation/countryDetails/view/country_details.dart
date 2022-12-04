@@ -129,7 +129,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       width: w,
       padding: const EdgeInsets.all(25),
       decoration: BoxDecoration(
-          borderRadius: const BorderRadius.only(topRight: Radius.circular(30)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(30)),
           color: Colors.brown.shade400,
           boxShadow: const [
             BoxShadow(color: Colors.black45, blurRadius: 0.5, spreadRadius: 0.5)
@@ -198,7 +198,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
       width: w,
       padding: const EdgeInsets.all(25),
       decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(topRight: Radius.circular(30)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
         color: Colors.brown,
         boxShadow: [
           BoxShadow(color: Colors.black45, blurRadius: 0.5, spreadRadius: 0.5)
