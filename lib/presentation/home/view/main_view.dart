@@ -139,7 +139,6 @@ class _MainViewState extends State<MainView> {
         ),
         padding: const EdgeInsets.all(15),
         child: Align(
-            //todo
             alignment: Alignment.bottomCenter,
             child: Text(country.description,
                 style: const TextStyle(
