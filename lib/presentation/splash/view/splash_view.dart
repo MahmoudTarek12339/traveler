@@ -103,7 +103,9 @@ class _SplashScreenState extends State<SplashScreen> {
     });
   }
 
+
   void openHomePage() {
+    //navigate to home page with fade transition
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
         pageBuilder: (context, animation, secondaryAnimation) {

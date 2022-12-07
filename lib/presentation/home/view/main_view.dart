@@ -217,6 +217,7 @@ class _MainViewState extends State<MainView> {
   }
 
   void opedDetailsPage(Country country) {
+    //navigate to details page with scale transition
     Navigator.of(context).push(
       PageRouteBuilder(
         transitionDuration:
@@ -239,6 +240,7 @@ class _MainViewState extends State<MainView> {
     );
   }
 
+  //function to detect any widget actions
   void onPanUpdate(DragUpdateDetails details) {
     //if Dragged up ,show expanded widget
     if (details.delta.dy < 0) {

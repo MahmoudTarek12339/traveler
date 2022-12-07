@@ -121,6 +121,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         });
   }
 
+  //about widget
   Widget _aboutWidget(Location location, w, h) {
     return Container(
         width: w,
@@ -170,6 +171,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ]));
   }
 
+  //reviews widget
   Widget _reviewsWidget(w, h) {
     return Container(
         width: w,
@@ -245,6 +247,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         ]));
   }
 
+  //location Name widget
   Widget _locationNameWidget() {
     return Align(
       alignment: Alignment.bottomCenter,
@@ -276,6 +279,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     );
   }
 
+  //function to scroll widgets with curve
   void onPageChanged(int page) {
     _mainController.animateToPage(page,
         duration: const Duration(milliseconds: AppConstants.scrollAnimation),
@@ -290,6 +294,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         duration: const Duration(milliseconds: AppConstants.scrollAnimation),
         curve: Curves.easeIn);
   }
+
 
   void onPanUpdate(DragUpdateDetails details, int num) {
     //if Dragged up ,show expanded widgets
